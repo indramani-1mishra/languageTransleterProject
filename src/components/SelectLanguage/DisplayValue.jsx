@@ -31,10 +31,10 @@ function DisplayValue({ languageValues }) {
     setValue(e.target.value); // Update input field value
   }
 
-  // Trigger API call when value or languageValues change
+  
   useEffect(() => {
-    convertLanguage(); // Call API to translate when value or languageValues change
-  }, [value, languageValues]); // Dependency array - re-run when value or languageValues changes
+    convertLanguage(); //
+  }, [value, languageValues]); 
 
   return (
     <>

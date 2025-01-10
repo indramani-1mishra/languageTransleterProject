@@ -26,10 +26,7 @@
 .value1
 {
     
-    flex-basis: 60%;
-
-    
-
+    flex-basis: 70%;
 }
 .raj
 {
@@ -46,6 +43,7 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
+    
  
 }
 .rajs
@@ -71,7 +69,48 @@
     top:30%;
     left: 33%;
     border: 2px solid green; 
-    padding: 10px;
-    width: 550px;
+    padding: 30px;
+    width: 750px;
+    
 
+}
+@media (max-width:450px) {
+
+    .raj3
+{
+    position: absolute;
+    top:20%;
+    left: 0;
+    border: 2px solid green; 
+    padding: 30px;
+    width: 100%;
+    
+
+}
+*{
+margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.value1
+{
+    flex-basis: 70%;
+}
+#select2
+{
+  
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    top:40px;
+    left: 100%;
+
+ 
+}
+
+
+
+    
 }
