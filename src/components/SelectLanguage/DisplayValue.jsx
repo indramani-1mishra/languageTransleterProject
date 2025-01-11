@@ -8,14 +8,23 @@ function DisplayValue({ languageValues }) {
   const [translatedValue, setTranslatedValue] = useState(''); // Translated value state
   const[copytext, setCopytext] = useState('');
 
-  // Handle button click to copy translated value to clipboard
   
+  function debounce(func, delay) {
+   let timerid;
+   return ((...args) => {
+   clearTimeout(timerid);
+   timerid= setTimeout(() => 
+  {
+    func(...args);
+   }, delay);
+  })
+  }
 
-  // API call function to fetch translated text
+
   async function convertLanguage() {
     if (value.trim() === "") {
-      setTranslatedValue(''); // Reset translated value when input is empty
-      return; // Prevent empty API call
+      setTranslatedValue(''); 
+      return; 
     }
 
     try {
@@ -29,11 +38,15 @@ function DisplayValue({ languageValues }) {
     }
   }
 
+ // const callAfterDlay= debounce(convertLanguage,1000);
+
   // Handle input change
   function onChangeHandler(e) {
     console.log("Value changed:", e.target.value);
     setValue(e.target.value); // Update input field value
+    
   }
+  const callAfterDlay= debounce(onChangeHandler,1000);
 
   function onClickf()
   {
@@ -43,19 +56,20 @@ function DisplayValue({ languageValues }) {
 
      setTimeout(() => {
       setCopytext("");
-    }, 2000); // Reset copytext after 2 seconds
+    }, 100); // Reset copytext after 2 seconds
  
   }
 
   
   useEffect(() => {
     convertLanguage(); //
+    //callAfterDlay(); // Call translation function after 1 second delay when input changes
   }, [value, languageValues]); 
 
   return (
     <>
       <div className="raj">
-        <Inputfield onChangeHandler={onChangeHandler} />
+        <Inputfield onChangeHandler={callAfterDlay} />
       </div>
       <div className="raj3">
         {translatedValue && <p>{(value==="")?" ":translatedValue}</p>}
