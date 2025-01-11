@@ -6,6 +6,10 @@ import axios from "axios";
 function DisplayValue({ languageValues }) {
   const [value, setValue] = useState(''); // Input value state
   const [translatedValue, setTranslatedValue] = useState(''); // Translated value state
+  const[copytext, setCopytext] = useState('');
+
+  // Handle button click to copy translated value to clipboard
+  
 
   // API call function to fetch translated text
   async function convertLanguage() {
@@ -31,6 +35,18 @@ function DisplayValue({ languageValues }) {
     setValue(e.target.value); // Update input field value
   }
 
+  function onClickf()
+  {
+    navigator.clipboard.writeText(translatedValue);
+    alert("Text copied to clipboard!");
+     setCopytext("Text copied to clipboard");
+
+     setTimeout(() => {
+      setCopytext("");
+    }, 2000); // Reset copytext after 2 seconds
+ 
+  }
+
   
   useEffect(() => {
     convertLanguage(); //
@@ -42,8 +58,9 @@ function DisplayValue({ languageValues }) {
         <Inputfield onChangeHandler={onChangeHandler} />
       </div>
       <div className="raj3">
-        {translatedValue && <p>Translated Value: {(value==="")?" ":translatedValue}</p>}
-      </div>
+        {translatedValue && <p>{(value==="")?" ":translatedValue}</p>}
+         <button type="button" className="btn1" onClick={onClickf}>{(copytext)? copytext:"copy to clipbord"}</button> 
+             </div>
     </>
   );
 }
